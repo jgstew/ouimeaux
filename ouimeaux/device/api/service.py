@@ -47,7 +47,7 @@ class Action(object):
             service=self.serviceType,
             args=arglist
         )
-        response = requests_post(self.controlURL, body.strip(), headers=self.headers)
+        response = requests_post(self.controlURL, body.strip(), headers=self.headers, timeout=5)
         d = {}
         for r in et.fromstring(response.content).getchildren()[0].getchildren()[0].getchildren():
             d[r.tag] = r.text
